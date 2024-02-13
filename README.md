@@ -13,7 +13,7 @@ This is a simple script which allows the downloading of a file from a link provi
 1. Open the terminal in the current directory
 2. run `node index.js <url> <destination_path>`.
 
-Example: `node index.js https://en.wikipedia.org/wiki/GitHub#/media/File:GitHub_Invertocat_Logo.svg` githubLogo.svg
+Example: `node index.js https://en.wikipedia.org/wiki/GitHub#/media/File:GitHub_Invertocat_Logo.svg githubLogo.svg`
 
 ## Technologies Used
 
