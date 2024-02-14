@@ -76,9 +76,9 @@ function handleGoodResponse(response, newName) {
 
     const progress = new Progress(responseSize);
 
-    const writeStream = createWriteStream(`${newName}`);
+    const writeStream = createWriteStream(`${newName}`, {highWaterMark: 16384 * 4});
 
-    const readableStream = Readable.fromWeb(response.body);
+    const readableStream = Readable.fromWeb(response.body, {highWaterMark: 16384 * 4});
 
     readableStream.pipe(writeStream);
 
