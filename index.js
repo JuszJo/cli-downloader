@@ -1,4 +1,6 @@
-import { createWriteStream, existsSync, readFile, writeFile } from "fs"
+import http from "http";
+import { createReadStream, createWriteStream } from "fs"
+import { readFile } from "fs/promises";
 import { Readable } from "stream";
 
 class Progress {
@@ -7,6 +9,7 @@ class Progress {
 
     constructor(sizeValue) {
         this.size = sizeValue;
+        if(!this.size) this.size = 1;
     }
 
     update(value) {
@@ -43,8 +46,7 @@ function parseSingleArg(args) {
 }
 
 function parseMultiArgs(args) {
-    if(args.length < 4) throw new Error("MISSING ARGUMENTS");
-    else return args.slice(2);
+    return args.slice(2);
 }
 
 function verifyResponse(response) {
@@ -106,7 +108,58 @@ async function download(link, newName) {
 
 const args = parseMultiArgs(process.argv);
 
-if(verifyLink(args[0])) download(args[0], args[1]);
+if(args.length > 0) {
+    if(verifyLink(args[0])) download(args[0], args[1]);
+}
+else {
+    async function getData(path) {
+        const data = await readFile(path, {
+            encoding: 'utf-8'
+        })
+    
+        return data;    
+    }
 
-// if(verifyLink(argument)) download(argument);
-// const argument = parseSingleArg(process.argv);
+    // SERVER
+
+    const PORT = 5000;
+
+    const routes = {
+        '/': await getData('index.html'),
+    }
+
+    const server = http.createServer(async (req, res) => {
+        console.log(req.url);
+
+        if(req.method == 'POST') {
+            let body = "";
+
+            req.on('data', chunk => {
+                body += chunk.toString();
+            })
+
+            req.on('end', () => {
+                console.log(body);
+
+                const parsedUrl = new URLSearchParams(body)
+
+                const fileName = parsedUrl.get("text");
+                
+                res.setHeader('Content-disposition', 'attachment; filename=' + fileName);
+    
+                createReadStream(fileName).pipe(res);
+            });
+        }
+        else {
+            const route = req.url;
+            
+            res.end(routes[route]);
+        }
+    })
+
+    server.listen(PORT, () => {
+        console.log(`http://localhost:${PORT}`);
+    })
+    
+    process.on('SIGINT', () => process.exit(1))
+}
