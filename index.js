@@ -121,6 +121,7 @@ else {
     }
 
     // SERVER
+    // For directory downloads to phone
 
     const PORT = 5000;
 
