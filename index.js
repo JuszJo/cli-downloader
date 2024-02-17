@@ -123,6 +123,8 @@ else {
     // SERVER
     // For directory downloads to phone
 
+    // TODO: Add interactive UI
+
     const PORT = 5000;
 
     const routes = {
