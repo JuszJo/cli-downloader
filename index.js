@@ -148,6 +148,8 @@ else {
 
                 const fileName = parsedUrl.get("text");
                 
+                console.log(fileName);
+                
                 res.setHeader('Content-disposition', 'attachment; filename=' + fileName);
     
                 createReadStream(fileName).pipe(res);
