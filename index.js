@@ -1,7 +1,8 @@
 import http from "http";
-import { createReadStream, createWriteStream } from "fs"
+import { createReadStream, createWriteStream, existsSync, } from "fs"
 import { readFile } from "fs/promises";
 import { Readable } from "stream";
+import Files from "./src/Files.js";
 
 class Progress {
     size = null;
@@ -127,12 +128,37 @@ else {
 
     const PORT = 5000;
 
+    const files = new Files();
+
+    const directory = files.getDir("content");
+
+    console.log(directory);
+
+    const html = `
+        ${directory.map(file => `
+            <div>
+                <a href="content/${file.name}">${file.name}</a>
+            </div>
+        `)}
+    `;
+
     const routes = {
-        '/': await getData('index.html'),
+        // '/': await getData('index.html'),
+        '/': html,
     }
 
     const server = http.createServer(async (req, res) => {
-        console.log(req.url);
+        console.log("URL: ", req.url);
+        console.log("METHOD: ", req.method);
+
+        if(req.url.match(/^\/content/)) {
+            const pathToFile = req.url.slice(1);
+
+            console.log("Path: ", pathToFile);
+
+            if(!existsSync(pathToFile)) routes[req.url] = "Does Not Exist";
+            else routes[req.url] = await getData(pathToFile)
+        }
 
         if(req.method == 'POST') {
             let body = "";
