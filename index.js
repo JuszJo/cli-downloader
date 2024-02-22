@@ -127,6 +127,7 @@ else {
     // TODO: Add interactive UI
     // TODO: Fix download
     // TODO: Fix streaming
+    // TODO: Fix server config
 
     const PORT = 5000;
 
