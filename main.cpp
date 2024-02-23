@@ -20,6 +20,8 @@ void joinFiles(const std::string& directoryPath, const std::string& outputFile) 
         return;
     }
 
+    // Loop to combine videos
+
     for (const auto& entry : std::filesystem::directory_iterator(directoryPath)) {
         if (std::filesystem::is_regular_file(entry)) {
             std::ifstream input(entry.path(), std::ios::binary);
