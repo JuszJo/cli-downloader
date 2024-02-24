@@ -125,8 +125,6 @@ else {
     // For directory downloads to phone
 
     // TODO: Add interactive UI
-    // TODO: Fix download
-    // TODO: Fix streaming
     // TODO: Fix server config
 
     const PORT = 5000;
@@ -140,7 +138,7 @@ else {
     const html = `
         ${directory.map(file => `
             <div>
-                <a href="content/${file.name}">${file.name}</a>
+                <a href="content/${file.name}" download>${file.name}</a>
             </div>
         `)}
     `;
@@ -186,8 +184,17 @@ else {
         }
         else {
             const route = req.url;
-            
-            res.end(routes[route]);
+
+            if(req.url.match(/^\/content/)) {
+                const fileName = req.url.slice(9);
+
+                res.setHeader('Content-disposition', 'attachment; filename=' + fileName);
+
+                createReadStream(req.url.slice(1)).pipe(res);
+            }
+            else {
+                res.end(routes[route]);
+            }
         }
     })
 
