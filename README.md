@@ -17,7 +17,7 @@ This is a simple script which allows the downloading of a file from a link provi
 
 ## Technologies Used
 
-- **Backend**: Node.js
+- **Backend**: Node.js and C++
 
 ## Contributing
 
