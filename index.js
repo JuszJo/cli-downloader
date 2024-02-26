@@ -125,7 +125,6 @@ else {
     // For directory downloads to phone
 
     // TODO: Add interactive UI
-    // TODO: Fix server config
 
     const PORT = 5000;
 
