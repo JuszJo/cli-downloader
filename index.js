@@ -125,6 +125,7 @@ else {
     // For directory downloads to phone
 
     // TODO: Add interactive UI
+    // TODO: Fix when done with project
 
     const PORT = 5000;
 
