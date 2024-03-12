@@ -2,6 +2,8 @@
 #include <filesystem>
 #include <fstream>
 
+// C++ cli tool to join all files in a directory
+
 void joinFiles(const std::string& directoryPath, const std::string& outputFile) {
     // Check if the output file exists, create it if it doesn't
     if (!std::filesystem::exists(outputFile)) {
