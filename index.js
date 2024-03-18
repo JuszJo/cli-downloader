@@ -3,6 +3,7 @@ import { createReadStream, createWriteStream, existsSync, } from "fs"
 import { readFile } from "fs/promises";
 import { Readable } from "stream";
 import Files from "./src/Files.js";
+import Progress from "./src/Progress.js";
 
 function singleLineDisplay(value) {
     process.stdout.clearLine(0)
