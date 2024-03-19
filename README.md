@@ -1,6 +1,7 @@
 # CLI Downloader
 
 This is a simple script which allows the downloading of a file from a link provided as a command line argument.
+Also acts as a server for my phone when no arguments are given
 
 
 ### Installation
