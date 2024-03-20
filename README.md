@@ -16,6 +16,8 @@ Also acts as a server for my phone when no arguments are given.
 
 - Example: `node index.js https://en.wikipedia.org/static/images/icons/wikipedia.png wikiLogo.png`
 
+- Server Usage - Add soon
+
 ## Technologies Used
 
 - **Backend**: Node.js and C++
