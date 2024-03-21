@@ -42,6 +42,8 @@ void joinFiles(const std::string& directoryPath, const std::string& outputFile) 
     output.close();
 }
 
+// Main entry point
+
 int main(int argc, char* argv[]) {
     if (argc != 3) {
         std::cerr << "Usage: " << argv[0] << " <input_directory> <output_file_name> \n";
