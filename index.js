@@ -82,7 +82,7 @@ async function download(link, newName) {
     else handleGoodResponse(response, newName);
 }
 
-// Add controllers
+// Add controllers and services
 
 // CLI
 
