@@ -84,6 +84,7 @@ async function download(link, newName) {
 
 // Add controllers and services
 // Maybe Database
+// Increase functionality
 
 // CLI
 
