@@ -86,6 +86,7 @@ async function download(link, newName) {
 // Maybe Database
 // Increase functionality
 // Will add mobile soon
+// Fix routing
 
 // CLI
 
