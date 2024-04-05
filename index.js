@@ -87,6 +87,8 @@ async function download(link, newName) {
 // Increase functionality
 // Will add mobile soon
 // Fix routing
+// Will use this to make a net server
+// for c++ games
 
 // CLI
 
